@@ -45,20 +45,20 @@
     "start": "run build and watch tasks in parallel"
   },
   "devDependencies": {
-    "autoprefixer": "^9.7.5",
-    "browser-sync": "^2.26.7",
-    "copyfiles": "^2.2.0",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.2",
-    "hbs-cli": "^1.3.0",
-    "imagemin-cli": "^5.1.0",
-    "node-sass": "^4.13.1",
+    "autoprefixer": "^10.2.1",
+    "browser-sync": "^2.26.13",
+    "copyfiles": "^2.4.1",
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "hbs-cli": "^1.4.0",
+    "imagemin-cli": "^6.0.0",
+    "node-sass": "^5.0.0",
     "npm-run-all": "^4.1.5",
-    "onchange": "^6.1.0",
-    "postcss-cli": "^7.1.0",
+    "onchange": "^7.1.0",
+    "postcss-cli": "^8.3.1",
     "rimraf": "^3.0.2",
-    "stylelint": "^13.2.1",
+    "stylelint": "^13.8.0",
     "stylelint-config-recommended": "^3.0.0"
   }
 }
