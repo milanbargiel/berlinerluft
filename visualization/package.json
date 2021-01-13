@@ -8,6 +8,9 @@
     "type": "git",
     "url": "https://github.com/milanbargiel/boilerplate"
   },
+  "eslintIgnore": [
+    "main.js"
+  ],
   "scripts": {
     "clean": "rimraf 'dist'",
     "stylelint": "stylelint 'dev/scss/**/*.scss'",
@@ -15,7 +18,7 @@
     "postcss": "postcss --use autoprefixer --replace 'dist/*.css' --no-map",
     "copyfiles": "copyfiles --up 2 'dev/assets/*' 'dist/assets'",
     "copyjs": "copyfiles --up 2 'dev/js/**/*.js' 'dist/js'",
-    "eslint": "eslint 'dev/js'",
+    "eslint": "eslint",
     "build:css": "npm-run-all --serial stylelint scss postcss",
     "build:html": "hbs 'dev/templates/[!_]*.hbs' --partial 'dev/templates/_*.hbs' --output 'dist/'",
     "build:images": "imagemin 'dev/assets/images/**/*.{png,jpg,gif,svg,ico}' --out-dir=dist/assets/images",
