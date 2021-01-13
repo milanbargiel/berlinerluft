@@ -4,22 +4,26 @@
   "description": "A simple boilerplate for creating websites with handlebars based templates.",
   "author": "Milan Bargiel",
   "license": "MIT",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/milanbargiel/boilerplate"
   },
+  "eslintIgnore": [
+    "main.js"
+  ],
   "scripts": {
     "clean": "rimraf 'dist'",
     "stylelint": "stylelint 'dev/scss/**/*.scss'",
     "scss": "node-sass 'dev/scss' --output 'dist'",
     "postcss": "postcss --use autoprefixer --replace 'dist/*.css' --no-map",
     "copyfiles": "copyfiles --up 2 'dev/assets/*' 'dist/assets'",
-    "copyjs": "copyfiles --up 2 'dev/js/**/*.js' 'dist/js'",
+    "copyjs": "webpack",
     "eslint": "eslint 'dev/js'",
     "build:css": "npm-run-all --serial stylelint scss postcss",
     "build:html": "hbs 'dev/templates/[!_]*.hbs' --partial 'dev/templates/_*.hbs' --output 'dist/'",
     "build:images": "imagemin 'dev/assets/images/**/*.{png,jpg,gif,svg,ico}' --out-dir=dist/assets/images",
-    "build:javascript": "npm-run-all --serial eslint copyjs",
+    "build:javascript": "npm-run-all --serial copyjs",
     "prebuild": "npm run clean",
     "build": "npm-run-all --serial copyfiles build:*",
     "watch:templates": "onchange 'dev/templates' -- npm run build:html",
@@ -60,7 +64,9 @@
     "postcss-cli": "^8.3.1",
     "rimraf": "^3.0.2",
     "stylelint": "^13.8.0",
-    "stylelint-config-recommended": "^3.0.0"
+    "stylelint-config-recommended": "^3.0.0",
+    "webpack": "^5.13.0",
+    "webpack-cli": "^4.3.1"
   },
   "dependencies": {
     "d3": "^6.3.1"
