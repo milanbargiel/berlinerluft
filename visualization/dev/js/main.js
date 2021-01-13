@@ -1,3 +1,7 @@
+function loadTweets() {
+  console.log('click');
+}
+
 function drawCalendar(dateData) {
   const weeksInMonth = (month) => {
     const m = d3.timeMonth.floor(month);
@@ -41,7 +45,8 @@ function drawCalendar(dateData) {
 
   const rect = svg.selectAll('rect.day')
     .data((d) => d3.timeDays(d, new Date(d.getFullYear(), d.getMonth() + 1, 1)))
-    .enter().append('rect')
+    .enter() // returns enter selection that represents elements to be added
+    .append('rect')
     .attr('class', 'day')
     .attr('width', cellSize)
     .attr('height', cellSize)
@@ -50,11 +55,14 @@ function drawCalendar(dateData) {
     .attr('fill', '#eaeaea') // default light grey fill
     .attr('y', (d) => (day(d) * cellSize) + (day(d) * cellMargin) + cellMargin)
     .attr('x', (d) => ((week(d) - week(new Date(d.getFullYear(), d.getMonth(), 1))) * cellSize) + ((week(d) - week(new Date(d.getFullYear(), d.getMonth(), 1))) * cellMargin) + cellMargin)
-    .on('mouseover', function () {
-      d3.select(this).classed('hover', true);
-    })
-    .on('mouseout', function () {
-      d3.select(this).classed('hover', false);
+    .on('click', function () {
+      if (!d3.select(this).classed('selected')) {
+        svg.selectAll('rect.day').classed('selected', false); // clear all previous selections
+        d3.select(this).classed('selected', true);
+      } else {
+        d3.select(this).classed('selected', false);
+      }
+      loadTweets();
     })
     .datum(format);
 
@@ -63,7 +71,6 @@ function drawCalendar(dateData) {
 
   const lookup = d3.nest()
     .key((d) => d.day)
-    // eslint-disable-next-line radix
     .rollup((leaves) => d3.sum(leaves, (d) => parseInt(d.count)))
     .object(dateData);
 
