@@ -1,5 +1,6 @@
 function drawCalendar(dateData){
-
+  console.log(dateData);
+  
   var weeksInMonth = function(month){
     var m = d3.timeMonth.floor(month)
     return d3.timeWeeks(d3.timeWeek.floor(m), d3.timeMonth.offset(m,1)).length;
@@ -78,6 +79,6 @@ function drawCalendar(dateData){
 
 }
 
-d3.csv("assets/dates.csv", function(response){
+d3.csv("assets/data.csv", function(response){
   drawCalendar(response);
 })
