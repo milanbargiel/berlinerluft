@@ -12,13 +12,15 @@ html {
 
 $base-font-size: 18px;
 $font-family: sans-serif;
+$red: #ff2300;
 
 body {
   font-size: $base-font-size;
   font-family: $font-family;
 }
 
-#calendar {
+#calendar,
+#tweets {
   margin: 20px;
 }
 .month {
@@ -29,10 +31,28 @@ body {
   fill: #777;
 }
 .day:hover {
+  cursor: pointer;
   stroke: #6d6E70;
   stroke-width: 2;
 }
 .day.selected {
-  stroke: #ffff33;
+  stroke: $red;
   stroke-width: 2;
+}
+
+// tweets
+.tweet-header {
+  color: $red;
+}
+
+.tweet {
+  padding: 6px;
+  margin-bottom: 20px;
+  max-width: 500px;
+  background-color: #f0f8ff;
+}
+
+.tweet-image {
+  width: 100%;
+  border-radius: 2%;
 }

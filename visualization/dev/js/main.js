@@ -1,15 +1,54 @@
-function loadTweets() {
-  console.log('click');
+function showDailyTweets(day, tweets) {
+  // clear tweets
+  document.querySelector('#tweets').innerHTML = '';
+
+  // create tweet header
+  d3.select('#tweets')
+    .append('h3')
+    .attr('class', 'tweet-header')
+    .html(`Tweets zur #friedrichstraße für den ${day}`);
+
+  let tweetsExist = false;
+
+  // search tweets
+  tweets.forEach((tweet) => {
+    if (tweet.date === day) {
+      d3.select('#tweets')
+        .append('div')
+        .attr('class', 'tweet')
+        .each(function () {
+          d3.select(this)
+            .append('div')
+            .attr('class', 'tweet-text')
+            .html(tweet.tweet);
+          const images = JSON.parse(tweet.photos.replace(/'/g, '"')); // read photos array from csv
+          if (images.length) {
+            d3.select(this)
+              .append('img')
+              .attr('class', 'tweet-image')
+              .attr('src', images[0]);
+          }
+        });
+      tweetsExist = true;
+    }
+  });
+
+  // if there are no tweets for the selected day
+  if (!tweetsExist) {
+    d3.select('#tweets')
+      .append('div')
+      .html('Es existieren keine Tweets für diesen Tag.');
+  }
 }
 
-function drawCalendar(dateData) {
+function drawCalendar(airData, tweets) {
   const weeksInMonth = (month) => {
     const m = d3.timeMonth.floor(month);
     return d3.timeWeeks(d3.timeWeek.floor(m), d3.timeMonth.offset(m, 1)).length;
   };
 
-  const minDate = d3.min(dateData, (d) => new Date(d.day));
-  const maxDate = d3.max(dateData, (d) => new Date(d.day));
+  const minDate = d3.min(airData, (d) => new Date(d.day));
+  const maxDate = d3.max(airData, (d) => new Date(d.day));
 
   const cellMargin = 2;
   const cellSize = 20;
@@ -55,14 +94,14 @@ function drawCalendar(dateData) {
     .attr('fill', '#eaeaea') // default light grey fill
     .attr('y', (d) => (day(d) * cellSize) + (day(d) * cellMargin) + cellMargin)
     .attr('x', (d) => ((week(d) - week(new Date(d.getFullYear(), d.getMonth(), 1))) * cellSize) + ((week(d) - week(new Date(d.getFullYear(), d.getMonth(), 1))) * cellMargin) + cellMargin)
-    .on('click', function () {
+    .on('click', function (d) {
       if (!d3.select(this).classed('selected')) {
         svg.selectAll('rect.day').classed('selected', false); // clear all previous selections
         d3.select(this).classed('selected', true);
       } else {
         d3.select(this).classed('selected', false);
       }
-      loadTweets();
+      showDailyTweets(d, tweets);
     })
     .datum(format);
 
@@ -72,10 +111,10 @@ function drawCalendar(dateData) {
   const lookup = d3.nest()
     .key((d) => d.day)
     .rollup((leaves) => d3.sum(leaves, (d) => parseInt(d.count)))
-    .object(dateData);
+    .object(airData);
 
   const scale = d3.scaleLinear()
-    .domain(d3.extent(dateData, (d) => parseInt(d.count)))
+    .domain(d3.extent(airData, (d) => parseInt(d.count)))
     .range([0.4, 1]); // the interpolate used for color expects a number in the range
     // [0,1] but i don't want the lightest part of the color scheme
 
@@ -85,6 +124,8 @@ function drawCalendar(dateData) {
     .text((d) => titleFormat(`${new Date(d)}: ${lookup[d]}`));
 }
 
-d3.csv('assets/data.csv', (response) => {
-  drawCalendar(response);
+d3.csv('assets/data.csv', (airData) => {
+  d3.csv('assets/tweets.csv', (tweets) => {
+    drawCalendar(airData, tweets);
+  });
 });
