@@ -15,6 +15,7 @@ $font-family: sans-serif;
 $red: #ff2300;
 
 body {
+  background-color: black;
   font-size: $base-font-size;
   font-family: $font-family;
 }
@@ -41,15 +42,18 @@ body {
 }
 
 // tweets
-.tweet-header {
-  color: $red;
+#tweets {
+  max-width: 1200px;
 }
 
+.grid-sizer,
+.tweet { width: 20%; }
+
 .tweet {
-  padding: 6px;
-  margin-bottom: 20px;
-  max-width: 500px;
-  background-color: #f0f8ff;
+  border-radius: 3px;
+  background-color: #A2CBFA;
+  border: 1px solid #4390E1;
+  padding: 10px;
 }
 
 .tweet-image {

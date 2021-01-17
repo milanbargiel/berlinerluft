@@ -1,12 +1,11 @@
 function showDailyTweets(day, tweets) {
-  // clear tweets
-  document.querySelector('#tweets').innerHTML = '';
-
-  // create tweet header
-  d3.select('#tweets')
-    .append('h3')
-    .attr('class', 'tweet-header')
-    .html(`Tweets zur #friedrichstraße für den ${day}`);
+  // clear tweets from previous selection
+  const tweetsContainer = document.querySelector('#tweets');
+  tweetsContainer.innerHTML = '';
+  // create masonry sizer div
+  const gridSizer = document.createElement('div');
+  gridSizer.classList.add('grid-sizer');
+  tweetsContainer.appendChild(gridSizer);
 
   let tweetsExist = false;
 
@@ -33,11 +32,23 @@ function showDailyTweets(day, tweets) {
     }
   });
 
-  // if there are no tweets for the selected day
+  // Apply Masonry layout to tweets, if they exist
   if (!tweetsExist) {
     d3.select('#tweets')
       .append('div')
       .html('Es existieren keine Tweets für diesen Tag.');
+  } else {
+    const container = document.querySelector('#tweets');
+    // eslint-disable-next-line no-undef
+    imagesLoaded(container, () => {
+      // eslint-disable-next-line no-undef, no-unused-vars
+      const msnry = new Masonry(container, {
+        // options
+        itemSelector: '.tweet',
+        columnWidth: '.grid-sizer',
+        percentPosition: true,
+      });
+    });
   }
 }
 
