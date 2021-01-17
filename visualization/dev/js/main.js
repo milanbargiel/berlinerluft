@@ -2,10 +2,14 @@ function showDailyTweets(day, tweets) {
   // clear tweets from previous selection
   const tweetsContainer = document.querySelector('#tweets');
   tweetsContainer.innerHTML = '';
+  tweetsContainer.style.display = 'none';
   // create masonry sizer div
   const gridSizer = document.createElement('div');
   gridSizer.classList.add('grid-sizer');
   tweetsContainer.appendChild(gridSizer);
+  // show loading spinner
+  const loader = document.querySelector('.loader');
+  loader.style.display = 'block';
 
   let tweetsExist = false;
 
@@ -37,10 +41,14 @@ function showDailyTweets(day, tweets) {
     d3.select('#tweets')
       .append('div')
       .html('Es existieren keine Tweets für diesen Tag.');
+    loader.style.display = 'none';
+    tweetsContainer.style.display = 'block';
   } else {
     const container = document.querySelector('#tweets');
     // eslint-disable-next-line no-undef
-    imagesLoaded(container, () => {
+    imagesLoaded(container, () => { // wait for images to be loaded
+      loader.style.display = 'none';
+      tweetsContainer.style.display = 'block';
       // eslint-disable-next-line no-undef, no-unused-vars
       const msnry = new Masonry(container, {
         // options
