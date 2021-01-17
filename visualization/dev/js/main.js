@@ -15,7 +15,7 @@ d3.timeFormatDefaultLocale({
   shortMonths: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
 });
 
-function showDailyTweets(day, tweets) {
+function showDailyTweets(day, tweets, colorValue) {
   // clear tweets from previous selection
   const tweetsContainer = document.querySelector('#tweets');
   tweetsContainer.innerHTML = '';
@@ -30,11 +30,22 @@ function showDailyTweets(day, tweets) {
 
   let tweetsExist = false;
 
+  // create climate card
+  const date = new Date(day);
+  let formattedDate = date.toLocaleString('de', { day: '2-digit', month: 'short', year: 'numeric' });
+
+  d3.select('#tweets')
+    .append('div')
+    .attr('class', 'tweet')
+    .append('span')
+    .attr('class', 'heat-card')
+    .html(formattedDate)
+    .attr('style', `background-color: ${colorValue}`);
+
   // search tweets
   tweets.forEach((tweet) => {
     if (tweet.date === day) {
-      const date = new Date(tweet.date);
-      const formattedDate = `${date.getDate()}. ${date.toLocaleString('de', { month: 'short' })}`;
+      formattedDate = date.toLocaleString('de', { day: '2-digit', month: 'short' });
       d3.select('#tweets')
         .append('div')
         .attr('class', 'tweet')
@@ -162,7 +173,8 @@ function drawCalendar(airData, tweets) {
       } else {
         d3.select(this).classed('selected', false);
       }
-      showDailyTweets(d, tweets);
+      const currentColor = window.getComputedStyle(this, null).getPropertyValue('fill');
+      showDailyTweets(d, tweets, currentColor);
     })
     .datum(format);
 
@@ -185,44 +197,24 @@ function drawCalendar(airData, tweets) {
     .text((d) => titleFormat(`${new Date(d)}: ${lookup[d]}`));
 
   // draw legend
-  // const thresholdScale = d3.scaleThreshold()
-  //   .domain(d3.extent(airData, (d) => parseInt(d.count)))
-  //   .range([0, 10, 20, 30, 40]);
+  const colorScale = d3.scaleSequential(d3.interpolateYlOrRd)
+    .domain([0, 40]);
 
-  // const calendar = d3.select('#calendar').append('svg');
+  const calendar = d3.select('#calendar').append('svg');
 
-  // calendar.append('g')
-  //   .attr('class', 'legendQuant')
-  //   .attr('transform', 'translate(20,20)');
+  calendar.append('g')
+    .attr('class', 'legendLinear')
+    .attr('transform', 'translate(80,20)');
 
-  // const legend = d3.legendColor()
-  //   .labelFormat(d3.format('.2f'))
-  //   .labels(d3.legendHelpers.thresholdLabels)
-  //   .useClass(true)
-  //   .scale(thresholdScale);
+  const legendLinear = d3.legendColor()
+    .shapeWidth(30)
+    .cells([0, 10, 20, 30, 40])
+    .orient('vertical')
+    .scale(colorScale)
+    .title('NO2 in μg m⁻³');
 
-  // calendar.select('.legendQuant')
-  //   .call(legend);
-
-/* eslint-disable */        
-const colorScale = d3.scaleSequential(d3.interpolateYlOrRd)
-  .domain([0,40])
-
-const calendar = d3.select('#calendar').append('svg');
-
-calendar.append("g")
-  .attr("class", "legendLinear")
-  .attr("transform", "translate(80,20)");
-
-var legendLinear = d3.legendColor()
-  .shapeWidth(30)
-  .cells([0, 10, 20, 30, 40])
-  .orient('vertical')
-  .scale(colorScale)
-  .title('NO2 in μg m⁻³');
-
-calendar.select(".legendLinear")
-  .call(legendLinear);
+  calendar.select('.legendLinear')
+    .call(legendLinear);
 }
 
 d3.csv('assets/data.csv', (airData) => {
