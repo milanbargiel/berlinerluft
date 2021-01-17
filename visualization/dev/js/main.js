@@ -28,7 +28,7 @@ function showDailyTweets(day, tweets, colorValue) {
   const loader = document.querySelector('.loader');
   loader.style.display = 'block';
 
-  let tweetsExist = false;
+  let tweetCounter = 0;
 
   // create climate card
   const date = new Date(day);
@@ -49,7 +49,7 @@ function showDailyTweets(day, tweets, colorValue) {
 
   // search tweets
   tweets.forEach((tweet) => {
-    if (tweet.date === day) {
+    if (tweet.date === day && tweetCounter < 5) {
       formattedDate = date.toLocaleString('de', { day: '2-digit', month: 'short' });
       d3.select('#tweets')
         .append('div')
@@ -75,12 +75,12 @@ function showDailyTweets(day, tweets, colorValue) {
               .attr('src', images[0]);
           }
         });
-      tweetsExist = true;
+      tweetCounter += 1;
     }
   });
 
   // Apply Masonry layout to tweets, if they exist
-  if (!tweetsExist) {
+  if (tweetCounter === 0) {
     d3.select('#tweets')
       .append('div')
       .html('Es existieren keine Tweets für diesen Tag.');
