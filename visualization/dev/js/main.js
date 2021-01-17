@@ -16,10 +16,20 @@ function showDailyTweets(day, tweets) {
   // search tweets
   tweets.forEach((tweet) => {
     if (tweet.date === day) {
+      const date = new Date(tweet.date);
+      const formattedDate = `${date.getDate()}. ${date.toLocaleString('de', { month: 'short' })}`;
       d3.select('#tweets')
         .append('div')
         .attr('class', 'tweet')
         .each(function () {
+          d3.select(this)
+            .append('div')
+            .attr('class', 'tweet-user')
+            .html(tweet.name)
+            .append('span')
+            .attr('class', 'tweet-meta')
+            // eslint-disable-next-line prefer-template
+            .html('@' + tweet.username + ' · ' + formattedDate);
           d3.select(this)
             .append('div')
             .attr('class', 'tweet-text')
