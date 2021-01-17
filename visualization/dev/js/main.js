@@ -36,11 +36,16 @@ function showDailyTweets(day, tweets, colorValue) {
 
   d3.select('#tweets')
     .append('div')
-    .attr('class', 'tweet')
-    .append('span')
-    .attr('class', 'heat-card')
-    .html(formattedDate)
-    .attr('style', `background-color: ${colorValue}`);
+    .attr('class', 'tweet heat-card')
+    .attr('style', `background-color: ${colorValue}; border: 1px solid ${colorValue};`)
+    .each(function () {
+      d3.select(this)
+        .append('div')
+        .html(formattedDate);
+      d3.select(this)
+        .append('div')
+        .html('12,2 μg m⁻³');
+    });
 
   // search tweets
   tweets.forEach((tweet) => {
