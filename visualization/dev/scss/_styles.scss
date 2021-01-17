@@ -28,7 +28,8 @@ body {
 .month {
   margin-right: 8px;
 }
-.month-name {
+.month-name,
+.day-label {
   font-size: 85%;
   fill: #777;
 }
@@ -37,6 +38,7 @@ body {
   stroke: #6d6E70;
   stroke-width: 2;
 }
+
 .day.selected {
   stroke: $red;
   stroke-width: 2;

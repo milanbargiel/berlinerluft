@@ -1,3 +1,20 @@
+const shortDays = ['S', 'M', 'D', 'M', 'D', 'F', 'S'];
+
+d3.timeFormatDefaultLocale({
+  decimal: ',',
+  thousands: '.',
+  grouping: [3],
+  currency: ['€', ''],
+  dateTime: '%a %b %e %X %Y',
+  date: '%d.%m.%Y',
+  time: '%H:%M:%S',
+  periods: ['AM', 'PM'],
+  days: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+  shortDays,
+  months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+  shortMonths: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+});
+
 function showDailyTweets(day, tweets) {
   // clear tweets from previous selection
   const tweetsContainer = document.querySelector('#tweets');
@@ -88,6 +105,20 @@ function drawCalendar(airData, tweets) {
   const titleFormat = d3.utcFormat('%a, %d-%b');
   const monthName = d3.timeFormat('%B');
   const months = d3.timeMonth.range(d3.timeMonth.floor(minDate), maxDate);
+
+  const dayLabels = d3.select('#calendar')
+    .append('svg')
+    .attr('width', 20)
+    .attr('height', ((cellSize * 7) + (cellMargin * 8) + 20)); // the 20 is for the month labels
+
+  shortDays.forEach((d, i) => {
+    dayLabels.append('text')
+      .attr('class', 'day-label')
+      .attr('x', 0)
+      .attr('y', () => (i * cellSize) + (i * cellMargin) + 2.5 * cellMargin)
+      .attr('dominant-baseline', 'hanging')
+      .text(d);
+  });
 
   const svg = d3.select('#calendar').selectAll('svg')
     .data(months)
