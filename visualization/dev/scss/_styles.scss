@@ -45,6 +45,7 @@ body {
 
 // tweets
 #tweets {
+  margin-top: 40px;
   max-width: 1200px;
   color: #fff;
 }
@@ -53,8 +54,10 @@ body {
 .tweet { width: 30%; }
 
 .tweet {
+  margin-bottom: 20px;
   border-radius: 3px;
-  background-color: #A2CBFA;
+  color: black;
+  background-color: #fff;
   border: 1px solid #4390E1;
   padding: 10px;
 }
@@ -75,6 +78,12 @@ body {
   border-width: 1px;
   border-color: rgb(196, 207, 214);
   margin-top: 10px;
+}
+
+// legend
+.legendLinear {
+  fill: #fff;
+  font-size: 85%;
 }
 
 // loading spinner

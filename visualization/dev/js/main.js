@@ -82,6 +82,7 @@ function showDailyTweets(day, tweets) {
         itemSelector: '.tweet',
         columnWidth: '.grid-sizer',
         percentPosition: true,
+        gutter: 20,
       });
     });
   }
@@ -175,13 +176,53 @@ function drawCalendar(airData, tweets) {
 
   const scale = d3.scaleLinear()
     .domain(d3.extent(airData, (d) => parseInt(d.count)))
-    .range([0.4, 1]); // the interpolate used for color expects a number in the range
+    .range([0.2, 1]); // the interpolate used for color expects a number in the range
     // [0,1] but i don't want the lightest part of the color scheme
 
   rect.filter((d) => d in lookup)
-    .style('fill', (d) => d3.interpolatePuBu(scale(lookup[d])))
+    .style('fill', (d) => d3.interpolateYlOrRd(scale(lookup[d])))
     .select('title')
     .text((d) => titleFormat(`${new Date(d)}: ${lookup[d]}`));
+
+  // draw legend
+  // const thresholdScale = d3.scaleThreshold()
+  //   .domain(d3.extent(airData, (d) => parseInt(d.count)))
+  //   .range([0, 10, 20, 30, 40]);
+
+  // const calendar = d3.select('#calendar').append('svg');
+
+  // calendar.append('g')
+  //   .attr('class', 'legendQuant')
+  //   .attr('transform', 'translate(20,20)');
+
+  // const legend = d3.legendColor()
+  //   .labelFormat(d3.format('.2f'))
+  //   .labels(d3.legendHelpers.thresholdLabels)
+  //   .useClass(true)
+  //   .scale(thresholdScale);
+
+  // calendar.select('.legendQuant')
+  //   .call(legend);
+
+/* eslint-disable */        
+const colorScale = d3.scaleSequential(d3.interpolateYlOrRd)
+  .domain([0,40])
+
+const calendar = d3.select('#calendar').append('svg');
+
+calendar.append("g")
+  .attr("class", "legendLinear")
+  .attr("transform", "translate(80,20)");
+
+var legendLinear = d3.legendColor()
+  .shapeWidth(30)
+  .cells([0, 10, 20, 30, 40])
+  .orient('vertical')
+  .scale(colorScale)
+  .title('NO2 in μg m⁻³');
+
+calendar.select(".legendLinear")
+  .call(legendLinear);
 }
 
 d3.csv('assets/data.csv', (airData) => {
