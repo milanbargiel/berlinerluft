@@ -44,10 +44,13 @@ function showDailyTweets(day, tweets, colorValue, no2Value) {
         .html(formattedDate);
       d3.select(this)
         .append('div')
-        .html(`~${no2Value} μg m³ NO2`);
-      d3.select(this)
-        .append('div')
-        .html('Friedrichstraße, Berlin');
+        .html(() => {
+          if (no2Value > 0) {
+            return `~${no2Value} μg m³ NO2<br>Friedrichstraße, Berlin`;
+          }
+
+          return 'An diesem Tag wurden keine Stickstoffdaten gemessen.';
+        });
     });
 
   // search tweets
