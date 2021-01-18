@@ -105,6 +105,10 @@ body {
   font-size: 12px;
 }
 
+.legend path {
+  stroke: #2D2C2C;
+}
+
 .tick line,
 .tick path {
   stroke: #fff;
