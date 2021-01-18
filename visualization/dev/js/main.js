@@ -206,24 +206,35 @@ function drawCalendar(airData, tweets) {
     .text((d) => `${titleFormat(new Date(d))}: ${lookup[d]} μg m³`);
 
   // draw legend
-  const colorScale = d3.scaleSequential(d3.interpolateYlOrRd)
-    .domain([0, 40]);
+  const legendWidth = 15;
+  const legendHeight = 120;
 
-  const calendar = d3.select('#calendar').append('svg');
+  const legend = d3.select('#calendar').append('svg')
+    .attr('height', ((cellSize * 7) + (cellMargin * 8) + 20)) // the 20 is for the month labels
+    .attr('width', legendWidth + 80)
+    .attr('class', 'legend')
+    .append('g');
 
-  calendar.append('g')
-    .attr('class', 'legendLinear')
-    .attr('transform', 'translate(80,20)');
+  legend.append('text')
+    .text('NO2 in μg m³')
+    .attr('y', 15)
+    .attr('x', 0);
 
-  const legendLinear = d3.legendColor()
-    .shapeWidth(30)
-    .cells([0, 10, 20, 30, 40])
-    .orient('vertical')
-    .scale(colorScale)
-    .title('NO2 in μg m³');
+  legend.append('image')
+    .attr('xlink:href', 'assets/images/YlOrRd.png')
+    .attr('preserveAspectRatio', 'none')
+    .attr('width', legendWidth - 1)
+    .attr('height', legendHeight - 1)
+    .attr('y', 36);
 
-  calendar.select('.legendLinear')
-    .call(legendLinear);
+  const ticks = d3.axisRight(d3.scaleLinear()
+    .domain([0, 40])
+    .range([0, 118]))
+    .ticks(5);
+
+  legend.append('g')
+    .attr('transform', `translate(${legendWidth}, 36)`)
+    .call(ticks);
 }
 
 d3.csv('assets/data.csv', (airData) => {

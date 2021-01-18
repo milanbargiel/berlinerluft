@@ -17,7 +17,7 @@ $blue: #00e;
 $yellow: #ff0;
 
 body {
-  background-color: black;
+  background-color: #2D2C2C;
   font-size: $base-font-size;
   font-family: $font-family;
   color: #fff;
@@ -53,7 +53,7 @@ body {
 }
 
 .grid-sizer,
-.tweet { width: 25%; }
+.tweet { width: 32%; }
 
 .tweet {
   margin-bottom: 20px;
@@ -85,7 +85,7 @@ body {
 .heat-card {
   font-weight: bold;
   position: relative;
-  width: 25%;
+  width: 32%;
   overflow: hidden;
 
   &:before{
@@ -96,9 +96,18 @@ body {
 }
 
 // legend
-.legendLinear {
+.legend {
+  margin-left: 50px;
+}
+
+.legend text {
   fill: #fff;
-  font-size: 85%;
+  font-size: 12px;
+}
+
+.tick line,
+.tick path {
+  stroke: #fff;
 }
 
 // loading spinner
