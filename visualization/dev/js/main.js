@@ -15,7 +15,7 @@ d3.timeFormatDefaultLocale({
   shortMonths: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
 });
 
-function showDailyTweets(day, tweets, colorValue) {
+function showDailyTweets(day, tweets, colorValue, no2Value) {
   // clear tweets from previous selection
   const tweetsContainer = document.querySelector('#tweets');
   tweetsContainer.innerHTML = '';
@@ -44,7 +44,10 @@ function showDailyTweets(day, tweets, colorValue) {
         .html(formattedDate);
       d3.select(this)
         .append('div')
-        .html('12,2 μg m⁻³');
+        .html(`~${no2Value} μg m³ NO2`);
+      d3.select(this)
+        .append('div')
+        .html('Friedrichstraße, Berlin');
     });
 
   // search tweets
@@ -119,7 +122,7 @@ function drawCalendar(airData, tweets) {
   const day = d3.timeFormat('%w');
   const week = d3.timeFormat('%U');
   const format = d3.timeFormat('%Y-%m-%d');
-  const titleFormat = d3.utcFormat('%a, %d-%b');
+  const titleFormat = d3.utcFormat('%d. %b');
   const monthName = d3.timeFormat('%B');
   const months = d3.timeMonth.range(d3.timeMonth.floor(minDate), maxDate);
 
@@ -136,6 +139,11 @@ function drawCalendar(airData, tweets) {
       .attr('dominant-baseline', 'hanging')
       .text(d);
   });
+
+  const lookup = d3.nest()
+    .key((d) => d.day)
+    .rollup((leaves) => d3.sum(leaves, (d) => parseInt(d.count)))
+    .object(airData);
 
   const svg = d3.select('#calendar').selectAll('svg')
     .data(months)
@@ -179,27 +187,23 @@ function drawCalendar(airData, tweets) {
         d3.select(this).classed('selected', false);
       }
       const currentColor = window.getComputedStyle(this, null).getPropertyValue('fill');
-      showDailyTweets(d, tweets, currentColor);
+      showDailyTweets(d, tweets, currentColor, lookup[d]);
     })
     .datum(format);
 
   rect.append('title')
     .text((d) => titleFormat(new Date(d)));
 
-  const lookup = d3.nest()
-    .key((d) => d.day)
-    .rollup((leaves) => d3.sum(leaves, (d) => parseInt(d.count)))
-    .object(airData);
-
   const scale = d3.scaleLinear()
     .domain(d3.extent(airData, (d) => parseInt(d.count)))
     .range([0.2, 1]); // the interpolate used for color expects a number in the range
     // [0,1] but i don't want the lightest part of the color scheme
 
+  // construct title to show on hover
   rect.filter((d) => d in lookup)
     .style('fill', (d) => d3.interpolateYlOrRd(scale(lookup[d])))
     .select('title')
-    .text((d) => titleFormat(`${new Date(d)}: ${lookup[d]}`));
+    .text((d) => `${titleFormat(new Date(d))}: ${lookup[d]} μg m³`);
 
   // draw legend
   const colorScale = d3.scaleSequential(d3.interpolateYlOrRd)
@@ -216,7 +220,7 @@ function drawCalendar(airData, tweets) {
     .cells([0, 10, 20, 30, 40])
     .orient('vertical')
     .scale(colorScale)
-    .title('NO2 in μg m⁻³');
+    .title('NO2 in μg m³');
 
   calendar.select('.legendLinear')
     .call(legendLinear);

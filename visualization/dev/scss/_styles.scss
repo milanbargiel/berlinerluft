@@ -13,6 +13,8 @@ html {
 $base-font-size: 15px;
 $font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 $red: #ff2300;
+$blue: #00e;
+$yellow: #ff0;
 
 body {
   background-color: black;
@@ -39,8 +41,8 @@ body {
 }
 
 .day.selected {
-  stroke: $red;
-  stroke-width: 2;
+  stroke: $yellow;
+  stroke-width: 3;
 }
 
 // tweets
@@ -51,14 +53,14 @@ body {
 }
 
 .grid-sizer,
-.tweet { width: 30%; }
+.tweet { width: 25%; }
 
 .tweet {
   margin-bottom: 20px;
   border-radius: 3px;
   color: black;
   background-color: #fff;
-  border: 1px solid #1da0f2;
+  border: 1px solid $blue;
   padding: 10px;
 }
 
@@ -81,8 +83,16 @@ body {
 }
 
 .heat-card {
-  font-size: 36px;
+  font-weight: bold;
+  position: relative;
+  width: 25%;
+  overflow: hidden;
 
+  &:before{
+    content: "";
+    display: block;
+    padding-top: 50%;
+  }
 }
 
 // legend
