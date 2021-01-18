@@ -143,6 +143,7 @@ function drawCalendar(airData, tweets) {
       .text(d);
   });
 
+  // lookup air quality data for day
   const lookup = d3.nest()
     .key((d) => d.day)
     .rollup((leaves) => d3.sum(leaves, (d) => parseInt(d.count)))
@@ -169,6 +170,24 @@ function drawCalendar(airData, tweets) {
     })
     .attr('text-anchor', 'middle')
     .text((d) => monthName(d));
+
+  // draw carfree line
+  d3.select('#calendar')
+    .insert('svg', 'svg:nth-child(3)')
+    .attr('height', ((cellSize * 7) + (cellMargin * 8) + 20)) // the 20 is for the month labels
+    .attr('width', (d) => {
+      const columns = weeksInMonth(d);
+      return ((cellSize * columns) + (cellMargin * (columns + 1)));
+    })
+    .attr('class', 'carfree-line')
+    .append('line')
+    .attr('x1', 0)
+    .attr('y1', 0)
+    .attr('x2', 0)
+    .attr('y2', ((cellSize * 7) + (cellMargin * 8)))
+    .style('stroke-width', 2)
+    .style('stroke', 'yellow')
+    .attr('stroke-dasharray', '2');
 
   const rect = svg.selectAll('rect.day')
     .data((d) => d3.timeDays(d, new Date(d.getFullYear(), d.getMonth() + 1, 1)))
