@@ -201,7 +201,13 @@ function drawCalendar(airData, tweets) {
 
   // construct title to show on hover
   rect.filter((d) => d in lookup)
-    .style('fill', (d) => d3.interpolateYlOrRd(scale(lookup[d])))
+    .style('fill', (d) => {
+      if (lookup[d] > 0) { // only color rectangle when value is bigger than 0
+        return d3.interpolateYlOrRd(scale(lookup[d]));
+      }
+
+      return '#eaeaea';
+    })
     .select('title')
     .text((d) => `${titleFormat(new Date(d))}: ${lookup[d]} μg m³`);
 
