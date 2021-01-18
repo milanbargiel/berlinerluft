@@ -186,8 +186,8 @@ function drawCalendar(airData, tweets) {
     .attr('x2', 0)
     .attr('y2', ((cellSize * 7) + (cellMargin * 8)))
     .style('stroke-width', 2)
-    .style('stroke', 'yellow')
-    .attr('stroke-dasharray', '2');
+    .style('stroke', '#777')
+    .attr('stroke-dasharray', '3 3');
 
   const rect = svg.selectAll('rect.day')
     .data((d) => d3.timeDays(d, new Date(d.getFullYear(), d.getMonth() + 1, 1)))
