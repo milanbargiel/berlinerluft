@@ -87,15 +87,13 @@ body {
 }
 
 .heat-card {
-  font-weight: bold;
-  position: relative;
   width: 32%;
   overflow: hidden;
+  padding-top: 0px;
+  padding-bottom: 50px;
 
-  &:before{
-    content: "";
-    display: block;
-    padding-top: 50%;
+  h1 {
+    padding-top: 10px;
   }
 }
 

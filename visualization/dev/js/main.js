@@ -40,13 +40,13 @@ function showDailyTweets(day, tweets, colorValue, no2Value) {
     .attr('style', `background-color: ${colorValue}; border: 1px solid ${colorValue};`)
     .each(function () {
       d3.select(this)
-        .append('div')
+        .append('h1')
         .html(formattedDate);
       d3.select(this)
         .append('div')
         .html(() => {
           if (no2Value > 0) {
-            return `~${no2Value} μg m³ NO2<br>Friedrichstraße, Berlin`;
+            return `<b>Stickstoffdioxid: Friedrichstraße, Berlin</b><br>${no2Value} μg m³ NO2`;
           }
 
           return 'An diesem Tag wurden keine Stickstoffdaten gemessen.';
@@ -89,25 +89,24 @@ function showDailyTweets(day, tweets, colorValue, no2Value) {
   if (tweetCounter === 0) {
     d3.select('#tweets')
       .append('div')
+      .attr('class', 'tweet')
       .html('Es existieren keine Tweets für diesen Tag.');
+  }
+
+  const container = document.querySelector('#tweets');
+  // eslint-disable-next-line no-undef
+  imagesLoaded(container, () => { // wait for images to be loaded
     loader.style.display = 'none';
     tweetsContainer.style.display = 'block';
-  } else {
-    const container = document.querySelector('#tweets');
-    // eslint-disable-next-line no-undef
-    imagesLoaded(container, () => { // wait for images to be loaded
-      loader.style.display = 'none';
-      tweetsContainer.style.display = 'block';
-      // eslint-disable-next-line no-undef, no-unused-vars
-      const msnry = new Masonry(container, {
-        // options
-        itemSelector: '.tweet',
-        columnWidth: '.grid-sizer',
-        percentPosition: true,
-        gutter: 20,
-      });
+    // eslint-disable-next-line no-undef, no-unused-vars
+    const msnry = new Masonry(container, {
+      // options
+      itemSelector: '.tweet',
+      columnWidth: '.grid-sizer',
+      percentPosition: true,
+      gutter: 20,
     });
-  }
+  });
 }
 
 function drawCalendar(airData, tweets) {
