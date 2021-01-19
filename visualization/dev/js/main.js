@@ -186,7 +186,7 @@ function drawCalendar(airData, tweets) {
     .attr('x2', 0)
     .attr('y2', ((cellSize * 7) + (cellMargin * 8)))
     .style('stroke-width', 2)
-    .style('stroke', '#777')
+    .style('stroke', 'yellow')
     .attr('stroke-dasharray', '3 3');
 
   const rect = svg.selectAll('rect.day')
