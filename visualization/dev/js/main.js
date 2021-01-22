@@ -74,7 +74,10 @@ function showDailyTweets(day, tweets, colorValue, no2Value) {
           d3.select(this)
             .append('div')
             .attr('class', 'tweet-text')
-            .html(tweet.tweet);
+            .html(() => {
+              const regex = /#+([a-zA-Z0-9_.äöüß]+)/ig;
+              return tweet.tweet.replace(regex, (value) => `<span class='hashtag'>${value}</span>`);
+            });
           const images = JSON.parse(tweet.photos.replace(/'/g, '"')); // read photos array from csv
           if (images.length) {
             d3.select(this)
