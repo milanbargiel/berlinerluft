@@ -172,7 +172,7 @@ function drawCalendar(airData, tweets) {
 
   // draw carfree line
   d3.select('#calendar')
-    .insert('svg', 'svg:nth-child(3)')
+    .insert('svg', 'svg:nth-child(4)')
     .attr('height', ((cellSize * 7) + (cellMargin * 8) + 20)) // the 20 is for the month labels
     .attr('width', (d) => {
       const columns = weeksInMonth(d);
