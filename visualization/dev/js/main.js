@@ -36,17 +36,17 @@ function showDailyTweets(day, tweets, colorValue, no2Value) {
 
   d3.select('#tweets')
     .append('div')
-    .attr('class', 'tweet heat-card')
+    .attr('class', 'card card--heat')
     .attr('style', `background-color: ${colorValue}; border: 1px solid ${colorValue};`)
     .each(function () {
       d3.select(this)
-        .append('h1')
+        .append('div')
         .html(() => {
           if (no2Value > 0) {
-            return `${no2Value} μg m³ NO2`;
+            return `<h1>${no2Value} μg m³ NO2</h1>`;
           }
 
-          return 'An diesem Tag wurden keine Stickstoffdaten gemessen.';
+          return '<h3>An diesem Tag wurden keine Stickstoffdaten gemessen.</h3>';
         });
       d3.select(this)
         .append('div')
@@ -58,8 +58,10 @@ function showDailyTweets(day, tweets, colorValue, no2Value) {
     if (tweet.date === day && tweetCounter < 5) {
       formattedDate = date.toLocaleString('de', { day: '2-digit', month: 'short' });
       d3.select('#tweets')
-        .append('div')
-        .attr('class', 'tweet')
+        .append('a')
+        .attr('href', tweet.link)
+        .attr('target', '_blank')
+        .attr('class', 'card card--twitter')
         .each(function () {
           d3.select(this)
             .append('div')
@@ -89,7 +91,7 @@ function showDailyTweets(day, tweets, colorValue, no2Value) {
   if (tweetCounter === 0) {
     d3.select('#tweets')
       .append('div')
-      .attr('class', 'tweet')
+      .attr('class', 'card')
       .html('Es existieren keine Tweets für diesen Tag.');
   }
 
@@ -101,7 +103,7 @@ function showDailyTweets(day, tweets, colorValue, no2Value) {
     // eslint-disable-next-line no-undef, no-unused-vars
     const msnry = new Masonry(container, {
       // options
-      itemSelector: '.tweet',
+      itemSelector: '.card',
       columnWidth: '.grid-sizer',
       percentPosition: true,
       gutter: 20,
