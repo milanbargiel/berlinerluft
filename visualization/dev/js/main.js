@@ -115,8 +115,8 @@ function drawCalendar(airData, tweets) {
     return d3.timeWeeks(d3.timeWeek.floor(m), d3.timeMonth.offset(m, 1)).length;
   };
 
-  const minDate = d3.min(airData, (d) => new Date(d.day));
-  const maxDate = d3.max(airData, (d) => new Date(d.day));
+  const minDate = d3.min(airData, (d) => new Date(d.date));
+  const maxDate = d3.max(airData, (d) => new Date(d.date));
 
   const cellMargin = 2;
   const cellSize = 20;
@@ -144,8 +144,8 @@ function drawCalendar(airData, tweets) {
 
   // lookup air quality data for day
   const lookup = d3.nest()
-    .key((d) => d.day)
-    .rollup((leaves) => d3.sum(leaves, (d) => parseInt(d.count)))
+    .key((d) => d.date)
+    .rollup((leaves) => d3.sum(leaves, (d) => parseFloat(d.value)))
     .object(airData);
 
   const svg = d3.select('#calendar').selectAll('svg')
@@ -216,7 +216,7 @@ function drawCalendar(airData, tweets) {
     .text((d) => titleFormat(new Date(d)));
 
   const scale = d3.scaleLinear()
-    .domain(d3.extent(airData, (d) => parseInt(d.count)))
+    .domain(d3.extent(airData, (d) => parseFloat(d.value)))
     .range([0.2, 1]); // the interpolate used for color expects a number in the range
     // [0,1] but i don't want the lightest part of the color scheme
 
