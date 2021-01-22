@@ -93,6 +93,13 @@ a {
 
 .hashtag {
   color: $blue;
+  transition-property: background-color;
+  transition-duration: 0.2;
+
+  &--link:hover {
+    filter: blur(1px);
+    background-color: rgba(67, 83, 255, 0.1);
+  }
 }
 
 .grid-sizer,
