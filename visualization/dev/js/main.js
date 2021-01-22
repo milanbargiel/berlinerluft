@@ -53,7 +53,7 @@ function showDailyTweets(day, tweets, colorValue, no2Value) {
 
   // search tweets
   tweets.forEach((tweet) => {
-    if (tweet.date === day && tweetCounter < 5) {
+    if (tweet.date === day && tweetCounter < 5) { // show max 5 tweets
       formattedDate = date.toLocaleString('de', { day: '2-digit', month: 'short' });
       d3.select('#tweets')
         .append('a')
@@ -64,11 +64,7 @@ function showDailyTweets(day, tweets, colorValue, no2Value) {
           d3.select(this)
             .append('div')
             .attr('class', 'tweet-user')
-            .html(tweet.name)
-            .append('span')
-            .attr('class', 'tweet-meta')
-            // eslint-disable-next-line prefer-template
-            .html('@' + tweet.username + ' · ' + formattedDate);
+            .html(`${tweet.name}<span class="tweet-meta">@${tweet.username} · ${formattedDate}`);
           d3.select(this)
             .append('div')
             .attr('class', 'tweet-text')
@@ -88,7 +84,6 @@ function showDailyTweets(day, tweets, colorValue, no2Value) {
     }
   });
 
-  // Apply Masonry layout to tweets, if they exist
   if (tweetCounter === 0) {
     d3.select('#tweets')
       .append('div')
@@ -96,6 +91,7 @@ function showDailyTweets(day, tweets, colorValue, no2Value) {
       .html('Es existieren keine Tweets für diesen Tag.');
   }
 
+  // Aplly masonry layout when images are loaded
   const container = document.querySelector('#tweets');
   // eslint-disable-next-line no-undef
   imagesLoaded(container, () => { // wait for images to be loaded
