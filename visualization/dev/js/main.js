@@ -41,16 +41,16 @@ function showDailyTweets(day, tweets, colorValue, no2Value) {
     .each(function () {
       d3.select(this)
         .append('h1')
-        .html(formattedDate);
-      d3.select(this)
-        .append('div')
         .html(() => {
           if (no2Value > 0) {
-            return `<b>Stickstoffdioxid: Friedrichstraße, Berlin</b><br>${no2Value} μg m³ NO2`;
+            return `${no2Value} μg m³ NO2`;
           }
 
           return 'An diesem Tag wurden keine Stickstoffdaten gemessen.';
         });
+      d3.select(this)
+        .append('div')
+        .html(`<b>${formattedDate}</b>`);
     });
 
   // search tweets
@@ -184,9 +184,8 @@ function drawCalendar(airData, tweets) {
     .attr('y1', 0)
     .attr('x2', 0)
     .attr('y2', ((cellSize * 7) + (cellMargin * 8)))
-    .style('stroke-width', 2)
-    .style('stroke', 'yellow')
-    .attr('stroke-dasharray', '3 3');
+    .style('stroke-width', 3)
+    .attr('stroke-dasharray', '5 5');
 
   const rect = svg.selectAll('rect.day')
     .data((d) => d3.timeDays(d, new Date(d.getFullYear(), d.getMonth() + 1, 1)))

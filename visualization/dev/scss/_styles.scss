@@ -1,3 +1,15 @@
+@font-face {
+  font-family: 'Inconsolata';
+  src: url('../assets/Inconsolata-Regular.ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Inconsolata';
+  src: url('../assets/Inconsolata-Bold.ttf');
+  font-weight: bold;
+}
+
 // global styles
 html {
   box-sizing: border-box;
@@ -10,17 +22,21 @@ html {
   box-sizing: inherit;
 }
 
-$base-font-size: 15px;
-$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-$red: #ff2300;
+$base-font-size: 18px;
+$font-family: 'Inconsolata', monospace;
+$red: rgb(255, 35, 0);
 $blue: #00e;
+$grey: rgb(102, 102, 102);
+$black: #000;
 $yellow: #ff0;
 
 body {
-  background-color: #2D2C2C;
   font-size: $base-font-size;
   font-family: $font-family;
-  color: #fff;
+}
+
+.header {
+  font-family: "Latin Modern", Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 .content {
@@ -32,7 +48,17 @@ body {
 .carfree-line {
   margin-left: 4px;
   margin-right: 12px;
+  stroke: $blue;
 }
+
+.calendar-intro {
+  margin-bottom: 30px;
+}
+
+.highlight {
+  color: $blue;
+}
+
 .month-name,
 .day-label {
   font-size: 85%;
@@ -40,14 +66,15 @@ body {
 }
 .day:hover {
   cursor: pointer;
-  stroke: #6d6E70;
+  stroke: $blue;
   stroke-width: 2;
 }
 
 .day.selected {
-  stroke: $yellow;
-  stroke-width: 3;
+  stroke: $blue;
+  stroke-width: 4;
 }
+
 
 // tweets
 #tweets {
@@ -63,8 +90,7 @@ body {
   margin-bottom: 20px;
   border-radius: 3px;
   color: black;
-  background-color: #fff;
-  border: 1px solid $blue;
+  border: 1px solid $grey;
   padding: 10px;
 }
 
@@ -103,17 +129,17 @@ body {
 }
 
 .legend text {
-  fill: #fff;
-  font-size: 12px;
+  fill: $grey;
+  font-size: 85%;
 }
 
 .legend path {
-  stroke: #2D2C2C;
+  stroke: #fff;
 }
 
 .tick line,
 .tick path {
-  stroke: #fff;
+  stroke: $grey;
 }
 
 // loading spinner
@@ -130,8 +156,8 @@ body {
 }
 .loader {
   display: none;
-  color: #ffffff;
-  font-size: 2px;
+  color: $grey;
+  font-size: 4px;
   margin-top: 40px;
   margin-left: 40px;
   position: relative;
