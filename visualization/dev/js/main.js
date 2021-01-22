@@ -232,7 +232,13 @@ function drawCalendar(airData, tweets) {
       return '#eaeaea';
     })
     .select('title')
-    .text((d) => `${titleFormat(new Date(d))}: ${lookup[d]} μg m³`);
+    .text((d) => {
+      if (lookup[d] === 0) {
+        return `${titleFormat(new Date(d))}`;
+      }
+
+      return `${titleFormat(new Date(d))}: ${lookup[d]} μg/m³`;
+    });
 
   // draw legend
   const legendWidth = 15;
