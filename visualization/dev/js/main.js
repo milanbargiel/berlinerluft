@@ -40,17 +40,15 @@ function showDailyTweets(day, tweets, colorValue, no2Value) {
     .attr('style', `background-color: ${colorValue}; border: 1px solid ${colorValue};`)
     .each(function () {
       d3.select(this)
-        .append('div')
         .html(() => {
+          const cardDate = `<span class="card__date">${formattedDate}</span>`;
+
           if (no2Value > 0) {
-            return `<h1>${no2Value} μg m³ NO2</h1>`;
+            return `${cardDate}<h1>${no2Value} μg/m³ NO2</h1><p>Der NO2-Jahresmittel-Grenzwert liegt laut Umweltbundesamt bei 40 µg/m3.</p>`;
           }
 
-          return '<h3>An diesem Tag wurden keine Stickstoffdaten gemessen.</h3>';
+          return `${cardDate}<h3>An diesem Tag wurden keine Stickstoffdaten gemessen. Der Sensor wurde zur Wartung abgenommen.</h3>`;
         });
-      d3.select(this)
-        .append('div')
-        .html(`<b>${formattedDate}</b>`);
     });
 
   // search tweets
@@ -247,7 +245,7 @@ function drawCalendar(airData, tweets) {
     .append('g');
 
   legend.append('text')
-    .text('NO2 in μg m³')
+    .text('NO2 in μg/m³')
     .attr('y', 15)
     .attr('x', 0);
 
