@@ -1,0 +1,533 @@
+html {
+    border: 0%;
+    font-family: IBM Plex Sans, sans-serif;
+}
+
+body { 
+    margin: 0; 
+    padding: 0; 
+}
+
+
+a {
+    text-decoration: none; 
+    opacity: 80%; 
+    color: black; 
+}
+
+/* Menüleiste */
+a:visited {
+    color: black;
+    opacity: 100%; 
+}
+
+
+/* Menuleiste Top */ 
+nav {
+    position: fixed;
+    z-index: 10; 
+    left:0;
+    right: 0; 
+    top: 0;
+    height: 3rem; 
+    background-color: #efefef;
+    width: 100%;
+    padding: 0.4%;  
+    color: black;
+    border-bottom: 2px solid; 
+}
+
+nav .project-titel {
+    float: left; 
+    width: 40%; 
+    height: 100%; 
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-left: 3rem;  
+
+
+}
+
+nav .navbar-links {
+    float: right;
+    padding: 0 ;
+    margin: 0; 
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+nav .navbar-links li {
+    list-style: none;  
+}
+
+nav .navbar-links a {
+    display: block;
+    padding: 1em; 
+}
+
+nav a:hover {
+    color: #f25c05;
+    opacity: 60%;
+    font-size: 1.54rem;
+    transition: 0.1s ease-in-out; 
+    text-decoration: none; 
+    }
+
+a:hover {
+    color: #f25c05  ;    /* lila #635fe3   knallorange #f25c05  orangewenigerintense #E56717*/
+    opacity: 60%; 
+    }
+/* Menu wenn kleiner Screen */ 
+
+#nav-toggle {
+    position: absolute; 
+    top: -100px;
+
+}
+
+nav .icon-burger {
+    display: none; 
+    position: absolute;
+    right: 4%; 
+    top:  50%;
+    transform: translateY(-50%);
+}
+
+nav .icon-burger .line {
+    width: 30px; 
+    height: 3px; 
+    background-color: #000000; 
+    margin: 5px;
+    border-radius: 3px; 
+    transition: all 0.5s ease-in-out; 
+
+}
+
+@media screen and (max-width: 860px){
+    nav .projekt-titel {
+        float: none;
+        width: auto;
+        justify-content: center;
+    }
+    nav .navbar-links {
+        float: none; 
+        position: fixed;
+        z-index: 9; 
+        background-color: black; 
+        left: 0;
+        top: 3rem;
+        right: 0; 
+        bottom: 100%;  
+        width: auto;
+        height: auto; 
+        flex-direction: column;
+        justify-content: space-evenly; 
+        box-sizing: border; 
+        overflow: hidden;
+        transition: all .5s ease-in-out; 
+    
+    }
+
+
+    nav .navbar-links a {
+        font-size: 1.0em;
+        color: #efefef;
+    }
+
+    nav .icon-burger {
+        display: block;
+
+    } 
+}
+
+nav :checked ~ .navbar-links {
+    bottom: 0;
+}
+
+nav :checked ~.icon-burger .line:nth-child(1) {
+    transition-duration: 0.2s ease-in-out; 
+    transform: translateY(8px) rotate(45deg);
+
+}
+
+nav :checked ~.icon-burger .line:nth-child(3) {
+    transition-duration: 0.2s ease-in-out;
+    transform: translateY(-8px) rotate(-45deg);
+
+}
+
+nav :checked ~.icon-burger .line:nth-child(2) {
+    transition-duration: 0.1s; 
+    opacity: 0;
+}
+
+
+/* Maps Friedrichstraße */ 
+
+#map { 
+    position: fixed;
+    top: 0;
+    bottom: 0; 
+    width: 100%; 
+    z-index: 1;
+}
+span {
+    margin-right: 220px;
+}
+
+/* Footer mit Tweets*/ 
+
+#footer {
+    width: 100%;
+    height: 2.5rem; 
+               /* Footer height */
+}
+
+.bar {
+    border-top: 2px solid; 
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    background-color: #efefef;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    z-index: 8;
+}
+.bar_content {
+    display: block;
+    letter-spacing: 0.5px;
+    width: 100%;
+    transform: translateX(100%);
+    animation: move 40s linear infinite;
+    z-index: 8;
+}
+
+@keyframes move {
+    to {
+        transform: translateX(-200%);
+    }
+}
+
+
+/* Überschrift / Landing page Text*/
+
+section {
+    max-width: 650px; 
+    margin: 2rem 3rem;
+    z-index: 3;  
+    /* background-color: black; 
+    opacity: 50%; */
+}
+
+.lh1 {
+    margin-top: 7%; 
+    margin-left: -0.5rem;  
+    font-size: 7.5rem;
+    font-weight: bolder; 
+    float: left;
+    position: relative;
+    margin-bottom: 2%;
+    z-index: 3;
+    line-height: 8rem;
+    color: #000000;
+ 
+
+}
+
+.lh2 {
+
+    font-weight: 700; 
+    font-size: 1.5rem; 
+    float: left; 
+    line-height: 1.5rem; 
+    margin-bottom: 0; 
+    margin-top: 0; 
+    z-index: 3;
+    position: relative;
+    color: #000000;
+}
+
+.lp {
+    z-index: 3;
+    font-weight: 400; 
+    font-size: 0.9em; 
+    float: left; 
+    line-height: 1.3em;
+    padding-bottom: 1em; 
+    position: relative;
+    color: #000000;
+
+}
+
+
+/* Button + animation */
+
+.rowbutton {
+    z-index: 3;
+    position: relative;
+    display: flex;
+    float: left;
+    margin-left: -1.5rem;
+    max-width: 450px; 
+
+
+}
+
+
+.button {
+      background: #efefef;   /* hell #efefef   dunkel 828282   mittel b5b5b5 */ 
+      border-radius: 3rem;
+      padding: 0.8rem 2.2rem;
+      color: #000000;
+      text-decoration: none;
+      font-size: 1.0rem;
+      margin: 0 1rem;
+      z-index: 3;
+      font-weight: 500; 
+      transition: font-size 80ms ease-in;
+      border: 2px solid black;
+}   
+
+.button:hover {
+    background-color: #f25c05  ;    /* lila #635fe3   knallorange #f25c05  orangewenigerintense #E56717*/
+    font-size: 1.03rem;
+    color: black;
+    opacity: 80%; 
+    }
+
+
+@media (max-width: 900px){
+    section {
+        margin-top: 10%;
+        margin-left: 2rem;
+        max-width: 600px; 
+        z-index: 3;  
+    }
+
+    .rowbutton {
+        font-size: 0.9rem;
+        margin-left: -0.6rem;
+        flex-direction: column;
+        overflow: hidden;
+        padding-bottom: 300px;
+        padding-top: 10px;  
+
+    }
+
+    .button {
+      border-radius: 2.5rem;
+      padding: 0.5rem 1.7rem;
+      margin: 0 0.5rem;
+      background: #b5b5b5;
+      margin-bottom: 1em;  
+    }
+}
+
+@media (max-width: 500px){
+    .lh1 {
+        font-size: 5rem;
+        line-height: 5rem; 
+        margin-top: 2rem;
+    }
+
+    .rowbutton {
+        padding-bottom: 300px; 
+    }
+}
+
+
+/* trüben Map */ 
+
+.layer {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%; 
+    width: 100%;
+    background-color: #efefef;
+    opacity: 50%; 
+    z-index: 2; 
+    position: fixed;
+    display: flex; 
+
+}
+
+
+/* read.html */
+
+/* Textstyles Read-Section */
+.wrapper {
+    width: 100%;
+    padding-top: 3em; 
+
+}
+
+.weiterlesen {
+    width: 100%; 
+}
+
+.weiterlesen h2 {
+    padding: 30px 30px 25px; 
+    line-height: 2.2rem; 
+}
+
+.weiterlesen p {
+    padding: 30px 30px 10px; 
+    line-height: 1.5rem; 
+    font-size: 1rem; 
+    word-wrap: break-word;
+
+    -webkit-hyphens: auto;
+   -moz-hyphens: auto;
+        hyphens: auto;
+}
+
+
+/* Image is not responding to that style - Why? */ 
+.img-text {
+    width: 100% !important;
+    margin: 30px 30px 10px; 
+}
+
+
+@media only screen and (min-width: 768px)
+{
+
+.wrapper{
+    width: 600px; 
+    margin: 0 auto;
+
+}
+
+.weiterlesen h2 {
+    padding: 20px 0px 0px; 
+    margin-bottom: 0; 
+}
+
+.weiterlesen p {
+    padding: 10px 0px 0px; 
+    
+
+    word-break: keep-all;
+    word-break: none;
+}
+br {
+    display: none; 
+
+}
+}
+
+
+@media only screen and (min-width: 1000px)
+{
+
+.wrapper{
+    width: 90%; 
+    padding-top: 12%;
+
+}
+
+
+.weiterlesen {
+    width: 50%; 
+    float: left !important;
+    max-height: 1700px;
+    padding-bottom: 60px;
+
+
+} 
+
+br{
+    display: none;
+}
+
+img {
+    width: 50%;
+    padding: 0;
+    float: left;
+} 
+
+.weiterlesen h2 {
+    padding: 0px 10px 0px 20px; 
+
+}
+
+.weiterlesen .first-header {
+        margin-top: -36px; 
+}
+
+.weiterlesen p {
+    padding: 20px 10px 0px 20px; 
+    
+}
+
+article {
+    padding-bottom: 0; 
+    padding-top: 0; 
+}
+/*.weiterlesen section {
+  column-count: 2; 
+  column-gap: 2em; 
+  padding-right: 5%; 
+  max-height: 720px; 
+  column-width: 500px; 
+}
+
+.weiterlesen section > * {
+  margin-top:0; 
+} */
+
+
+}
+
+
+.weiterlesen iframe {
+    display: none;
+}
+
+
+/*page explore.html */ 
+/* popup Hilfe */ 
+.popup {
+    position: fixed;
+    bottom: 0;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.first-button {
+    color: black;
+    margin-right: 3%;
+    margin-bottom: 3%;
+    float: right;
+    font-size: 1rem; 
+    padding: 1rem 1.5rem; 
+    border-radius: 4rem; 
+    border: 2px solid black;   
+    background: #efefef;
+    transition: box-shadow 0.35s ease !important; 
+    outline: none;
+
+}
+
+.first-button:hover {
+    color: #f25c05  ;    /* lila #635fe3   knallorange #f25c05  orangewenigerintense #E56717*/
+    opacity: 60%; 
+    }
+
+.content {
+    padding-top: 3rem; 
+    padding-left: 2rem; 
+    margin: 20px; }
