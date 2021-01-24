@@ -1,4 +1,28 @@
 @font-face {
+  font-family: 'FiraSansCondensed';
+  src: url('assets/FiraSansCondensed-Regular.ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'FiraSansCondensed';
+  src: url('assets/FiraSansCondensed-Bold.ttf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'FiraCode';
+  src: url('assets/FiraCode-Regular.ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'FiraCode';
+  src: url('assets/FiraCode-Bold.ttf');
+  font-weight: bold;
+}
+
+@font-face {
   font-family: 'Inconsolata';
   src: url('assets/Inconsolata-Regular.ttf');
   font-weight: normal;
@@ -35,9 +59,9 @@ html {
 }
 
 $bp-tablet: 720px;
-$base-font-size: 16px;
+$base-font-size: 18px;
 // $font-family: 'Inconsolata', monospace;
-$font-family: 'IBM Plex Sans', sans-serif;
+$font-family: 'FiraCode', monospace;
 $red: rgb(255, 35, 0);
 $blue: #00e;
 $grey: rgb(101, 119, 134);
@@ -48,11 +72,17 @@ $slightest-grey: #F8F8F8;
 $black: #000;
 $white: #fff;
 $yellow: #ff0;
+$orange: #f25c05;
 
 body {
   background-color: $slightest-grey;
   font-size: $base-font-size;
   font-family: $font-family;
+}
+
+h1, h2, h3 {
+  text-transform: uppercase;
+  font-family: 'FiraSansCondensed', sans-serif;
 }
 
 a {

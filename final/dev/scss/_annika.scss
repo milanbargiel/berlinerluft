@@ -26,8 +26,8 @@ nav {
     background-color: #efefef;
     width: 100%;
     padding: 0.4%;  
-    color: black;
     border-bottom: 2px solid; 
+    font-size: 1.5rem;
 }
 
 nav .project-titel {
@@ -36,10 +36,7 @@ nav .project-titel {
     height: 100%; 
     display: flex;
     align-items: center;
-    font-size: 1.5rem;
     margin-left: 3rem;  
-
-
 }
 
 nav .navbar-links {
@@ -51,7 +48,6 @@ nav .navbar-links {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    font-size: 1.5rem;
 }
 
 nav .navbar-links li {
@@ -80,7 +76,6 @@ nav a:hover {
 #nav-toggle {
     position: absolute; 
     top: -100px;
-
 }
 
 nav .icon-burger {
@@ -218,25 +213,17 @@ section {
 }
 
 .lh1 {
-    margin-top: 7%; 
-    margin-left: -0.5rem;  
     font-size: 7.5rem;
     font-weight: bolder; 
-    float: left;
     position: relative;
     margin-bottom: 2%;
     z-index: 3;
-    line-height: 8rem;
-    color: #000000;
- 
-
+    line-height: 1;
 }
 
 .lh2 {
-
     font-weight: 700; 
     font-size: 1.5rem; 
-    float: left; 
     line-height: 1.5rem; 
     margin-bottom: 0; 
     margin-top: 0; 
