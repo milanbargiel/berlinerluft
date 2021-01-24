@@ -1,20 +1,3 @@
-html {
-    border: 0%;
-}
-
-body { 
-    margin: 0; 
-    padding: 0; 
-}
-
-
-a {
-    text-decoration: none; 
-    opacity: 80%; 
-    color: black; 
-}
-
-
 /* Menuleiste Top */ 
 nav {
     position: fixed;
@@ -340,168 +323,19 @@ section {
     z-index: 2; 
     position: fixed;
     display: flex; 
-
 }
 
 
 /* read.html */
 
 /* Textstyles Read-Section */
-.wrapper {
-    width: 100%;
-    padding-top: 3em; 
-
-}
 
 .weiterlesen {
+    max-width: 820px;
     width: 100%; 
 }
 
-.weiterlesen h2 {
-    padding: 30px 30px 25px; 
-    line-height: 2.2rem; 
-}
-
-.weiterlesen p {
-    padding: 30px 30px 10px; 
-    line-height: 1.5rem; 
-    font-size: 1rem; 
-    word-wrap: break-word;
-
-    -webkit-hyphens: auto;
-   -moz-hyphens: auto;
-        hyphens: auto;
-}
-
-
-/* Image is not responding to that style - Why? */ 
-.img-text {
-    width: 100% !important;
-    margin: 30px 30px 10px; 
-}
-
-
-@media only screen and (min-width: 768px)
-{
-
-.wrapper{
-    width: 600px; 
-    margin: 0 auto;
-
-}
-
-.weiterlesen h2 {
-    padding: 20px 0px 0px; 
-    margin-bottom: 0; 
-}
-
-.weiterlesen p {
-    padding: 10px 0px 0px; 
-    
-
-    word-break: keep-all;
-    word-break: none;
-}
-
-}
-
-
-@media only screen and (min-width: 1000px)
-{
-
-.wrapper{
-    width: 90%; 
-    padding-top: 12%;
-
-}
-
-
-.weiterlesen {
-    width: 50%; 
-    float: left !important;
-    max-height: 1700px;
-    padding-bottom: 60px;
-
-
-}
-
-img {
-    width: 50%;
-    padding: 0;
-    float: left;
-} 
-
-.weiterlesen h2 {
-    padding: 0px 10px 0px 20px; 
-
-}
-
-.weiterlesen .first-header {
-        margin-top: -36px; 
-}
-
-.weiterlesen p {
-    padding: 20px 10px 0px 20px; 
-    
-}
-
-article {
-    padding-bottom: 0; 
-    padding-top: 0; 
-}
-/*.weiterlesen section {
-  column-count: 2; 
-  column-gap: 2em; 
-  padding-right: 5%; 
-  max-height: 720px; 
-  column-width: 500px; 
-}
-
-.weiterlesen section > * {
-  margin-top:0; 
-} */
-
-
-}
-
-
-.weiterlesen iframe {
-    display: none;
-}
-
-
-/*page explore.html */ 
-/* popup Hilfe */ 
-.popup {
-    position: fixed;
-    bottom: 0;
-    max-width: 100%;
+.text-img {
     width: 100%;
-    margin: 0 auto;
-    padding: 0;
+    margin-top: 2rem;
 }
-
-.first-button {
-    color: black;
-    margin-right: 3%;
-    margin-bottom: 3%;
-    float: right;
-    font-size: 1rem; 
-    padding: 1rem 1.5rem; 
-    border-radius: 4rem; 
-    border: 2px solid black;   
-    background: #efefef;
-    transition: box-shadow 0.35s ease !important; 
-    outline: none;
-
-}
-
-.first-button:hover {
-    color: #f25c05  ;    /* lila #635fe3   knallorange #f25c05  orangewenigerintense #E56717*/
-    opacity: 60%; 
-    }
-
-.content {
-    padding-top: 3rem; 
-    padding-left: 2rem; 
-    margin: 20px; }

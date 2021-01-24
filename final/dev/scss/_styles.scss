@@ -81,12 +81,17 @@ body {
 }
 
 h1, h2, h3 {
-  text-transform: uppercase;
   font-family: 'FiraSansCondensed', sans-serif;
 }
 
+h2 {
+  font-size: 2rem;
+}
+
 a {
-  text-decoration: none;
+  text-decoration: none; 
+  opacity: 80%; 
+  color: black; 
 }
 
 // index
@@ -101,7 +106,12 @@ a {
 }
 
 .content {
+  padding-top: 3rem;
   margin: 20px;
+
+  @media screen and (min-width: $bp-tablet) {
+    padding-left: 2rem;
+  }
 }
 .month {
   margin-right: 2rem;
