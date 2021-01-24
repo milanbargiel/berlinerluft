@@ -1,0 +1,244 @@
+@font-face {
+  font-family: 'Inconsolata';
+  src: url('assets/Inconsolata-Regular.ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Inconsolata';
+  src: url('assets/Inconsolata-Bold.ttf');
+  font-weight: bold;
+}
+
+// global styles
+html {
+  box-sizing: border-box;
+  -ms-overflow-style: scrollbar;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+$bp-tablet: 720px;
+$base-font-size: 18px;
+$font-family: 'Inconsolata', monospace;
+$red: rgb(255, 35, 0);
+$blue: #00e;
+$grey: rgb(101, 119, 134);
+$light-grey: rgb(204, 214, 221);
+$almost-white: rgb(245, 248, 250);
+$black: #000;
+$yellow: #ff0;
+
+body {
+  font-size: $base-font-size;
+  font-family: $font-family;
+}
+
+a {
+  text-decoration: none;
+}
+
+.content {
+  margin: 20px;
+}
+.month {
+  margin-right: 8px;
+}
+.carfree-line {
+  margin-left: 4px;
+  margin-right: 12px;
+  stroke: $blue;
+}
+
+.calendar-intro {
+  margin-bottom: 30px;
+}
+
+.highlight {
+  color: $blue;
+}
+
+.month-name,
+.day-label {
+  font-size: 85%;
+  fill: #777;
+}
+.day {
+  transition-property: stroke;
+  transition-duration: 0.2s;
+}
+
+.day:hover {
+  cursor: pointer;
+  stroke: $blue;
+  stroke-width: 2;
+}
+
+.day.selected {
+  stroke: $blue;
+  stroke-width: 4;
+}
+
+
+// tweets
+#tweets {
+  margin-top: 40px;
+  max-width: 1200px;
+  color: #fff;
+}
+
+.hashtag {
+  color: $blue;
+  transition-property: background-color;
+  transition-duration: 0.2;
+
+  &--link:hover {
+    filter: blur(1px);
+    background-color: rgba(67, 83, 255, 0.1);
+  }
+}
+
+.grid-sizer,
+.card { 
+  width: 100%;
+
+  @media screen and (min-width: $bp-tablet) {
+    width: 32%; 
+  }
+}
+
+.card {
+  color: $black;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  border: 1px solid $light-grey;
+  padding: 10px;
+}
+
+.card--twitter {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+  transition-property: background-color;
+  transition-duration: 0.2s;
+
+  &:hover {
+    background-color: $almost-white;
+  }
+}
+
+.card--heat {
+  display: flex;
+  flex-direction: column;
+
+  h1, h3 {
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
+}
+
+.card__date {
+  margin-left: auto;
+}
+
+.tweet-user {
+  font-size: 80%;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.tweet-meta {
+  color: $grey;
+  margin-left: 5px;
+  font-weight: normal;
+}
+
+.tweet-image {
+  width: 100%;
+  border-radius: 16px;
+  border-width: 1px;
+  border-color: rgb(196, 207, 214);
+  margin-top: 10px;
+}
+
+// legend
+.legend {
+  margin-left: 50px;
+}
+
+.legend text {
+  fill: $grey;
+  font-size: 85%;
+}
+
+.legend path {
+  stroke: #fff;
+}
+
+.tick line,
+.tick path {
+  stroke: $grey;
+}
+
+// loading spinner
+.loader,
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.8s infinite ease-in-out; /* stylelint-disable-line declaration-block-no-shorthand-property-overrides */
+  animation: load7 1.8s infinite ease-in-out; /* stylelint-disable-line declaration-block-no-shorthand-property-overrides */
+}
+.loader {
+  display: none;
+  color: $grey;
+  font-size: 4px;
+  margin-top: 40px;
+  margin-left: 40px;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.loader:before,
+.loader:after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+.loader:before {
+  left: -3.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 3.5em;
+}
+@-webkit-keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+@keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}

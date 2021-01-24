@@ -1,0 +1,69 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "description": "A simple boilerplate for creating websites with handlebars based templates.",
+  "author": "Milan Bargiel",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/milanbargiel/boilerplate"
+  },
+  "scripts": {
+    "clean": "rimraf 'dist'",
+    "stylelint": "stylelint 'dev/scss/**/*.scss'",
+    "scss": "node-sass 'dev/scss' --output 'dist'",
+    "postcss": "postcss --use autoprefixer --replace 'dist/*.css' --no-map",
+    "copyfiles": "copyfiles --up 2 'dev/assets/*' 'dist/assets'",
+    "copyjs": "copyfiles --up 2 'dev/js/**/*.js' 'dist/js'",
+    "eslint": "eslint 'dev/js'",
+    "build:css": "npm-run-all --serial stylelint scss postcss",
+    "build:html": "hbs 'dev/templates/[!_]*.hbs' --partial 'dev/templates/_*.hbs' --output 'dist/'",
+    "build:images": "imagemin 'dev/assets/images/**/*.{png,jpg,gif,svg,ico}' --out-dir=dist/assets/images",
+    "build:javascript": "npm-run-all --serial eslint copyjs",
+    "prebuild": "npm run clean",
+    "build": "npm-run-all --serial copyfiles build:*",
+    "watch:templates": "onchange 'dev/templates' -- npm run build:html",
+    "watch:images": "onchange 'dev/assets/images' -- npm run build:images",
+    "watch:scss": "onchange 'dev/scss' -- npm run build:css",
+    "watch:javascript": "onchange 'dev/js' -- npm run build:javascript",
+    "watch:files": "onchange 'dev/assets/*' -- npm run copyfiles",
+    "watch": "npm-run-all --parallel --silent watch:*",
+    "serve": "browser-sync start --server 'dist' --files 'dist'",
+    "prestart": "npm run --silent build",
+    "start": "npm-run-all --parallel serve watch",
+    "deploy": "scp -r dist/* ownserver:/var/www/plrm.space/berlinerluft"
+  },
+  "scriptsComments": {
+    "stylelint": "lint scss-files with rules specified in .stylelintrc.json",
+    "scss": "compile scss to css",
+    "postcss": "use postcss to autoprefix css-files in dist-folder without sourcemap in output",
+    "copyfiles": "copy top level files from assets folder to /dist (ignore images folder)",
+    "eslint": "lint scss-files with rules specified in .eslintrc.json",
+    "build:html": "render templates with partials (filename starts with underscore) to dist folder",
+    "build:images": "optimize images and output in dist folder",
+    "build:javascript": "lint javascript and then copy all files to dist folder",
+    "serve": "start a local dev server and reload browser on filechange in dist folder",
+    "start": "run build and watch tasks in parallel"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.1",
+    "browser-sync": "^2.26.13",
+    "copyfiles": "^2.4.1",
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "hbs-cli": "^1.4.0",
+    "imagemin-cli": "^6.0.0",
+    "node-sass": "^5.0.0",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^7.1.0",
+    "postcss": "^8.2.4",
+    "postcss-cli": "^8.3.1",
+    "rimraf": "^3.0.2",
+    "stylelint": "^13.8.0",
+    "stylelint-config-recommended": "^3.0.0"
+  },
+  "dependencies": {
+    "d3": "^6.3.1"
+  }
+}
