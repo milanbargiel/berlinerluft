@@ -18,7 +18,7 @@
     "eslint": "eslint 'dev/js'",
     "build:css": "npm-run-all --serial stylelint scss postcss",
     "build:html": "hbs 'dev/templates/[!_]*.hbs' --partial 'dev/templates/_*.hbs' --output 'dist/'",
-    "build:images": "imagemin 'dev/assets/images/**/*.{png,jpg,gif,svg,ico}' --out-dir=dist/assets/images",
+    "build:images": "imagemin 'dev/assets/images/**/*.{png,jpg,jpeg,gif,svg,ico}' --out-dir=dist/assets/images",
     "build:javascript": "npm-run-all --serial eslint copyjs",
     "prebuild": "npm run clean",
     "build": "npm-run-all --serial copyfiles build:*",

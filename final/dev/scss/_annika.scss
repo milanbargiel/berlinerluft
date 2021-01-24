@@ -220,11 +220,8 @@ section {
     font-weight: 400; 
     font-size: 0.9em; 
     float: left; 
-    line-height: 1.3em;
     padding-bottom: 1em; 
     position: relative;
-    color: #000000;
-
 }
 
 
@@ -236,9 +233,7 @@ section {
     display: flex;
     float: left;
     margin-left: -1.5rem;
-    max-width: 450px; 
-
-
+    max-width: 450px;
 }
 
 
@@ -246,7 +241,6 @@ section {
       background: #efefef;   /* hell #efefef   dunkel 828282   mittel b5b5b5 */ 
       border-radius: 3rem;
       padding: 0.8rem 2.2rem;
-      color: #000000;
       text-decoration: none;
       font-size: 1.0rem;
       margin: 0 1rem;
@@ -326,16 +320,3 @@ section {
 }
 
 
-/* read.html */
-
-/* Textstyles Read-Section */
-
-.weiterlesen {
-    max-width: 820px;
-    width: 100%; 
-}
-
-.text-img {
-    width: 100%;
-    margin-top: 2rem;
-}
