@@ -10,6 +10,18 @@
   font-weight: bold;
 }
 
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('assets/IBMPlexSans-Regular.ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('assets/IBMPlexSans-Bold.ttf');
+  font-weight: bold;
+}
+
 // global styles
 html {
   box-sizing: border-box;
@@ -23,8 +35,9 @@ html {
 }
 
 $bp-tablet: 720px;
-$base-font-size: 18px;
-$font-family: 'Inconsolata', monospace;
+$base-font-size: 16px;
+// $font-family: 'Inconsolata', monospace;
+$font-family: 'IBM Plex Sans', sans-serif;
 $red: rgb(255, 35, 0);
 $blue: #00e;
 $grey: rgb(101, 119, 134);
