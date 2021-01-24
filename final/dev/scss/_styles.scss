@@ -64,7 +64,7 @@ $small-font-size: 15px;
 // $font-family: 'Inconsolata', monospace;
 $font-family: 'FiraCode', monospace;
 $red: rgb(255, 35, 0);
-$blue: #00e;
+$blue: rgb(27, 149, 224);
 $grey: rgb(101, 119, 134);
 $light-grey: rgb(204, 214, 221);
 $almost-white: rgb(245, 248, 250);
@@ -92,7 +92,6 @@ h2 {
 
 a {
   text-decoration: none; 
-  opacity: 80%; 
   color: black; 
 }
 
@@ -108,7 +107,7 @@ a {
 }
 
 .content {
-  padding-top: 3rem;
+  padding-top: 4rem;
   margin: 20px;
 
   @media screen and (min-width: $bp-tablet) {
@@ -120,7 +119,7 @@ a {
 
 .column {
   margin: 0 auto;
-  max-width: 720px;
+  max-width: 680px;
   overflow: hidden;
 
   &--wide {
@@ -132,8 +131,7 @@ a {
   width: 100%;
 }
 
-.image-container {
-  text-align: right;
+.content-container {
   font-size: $small-font-size;
   color: $grey;
   margin-left: 2rem;
@@ -142,6 +140,7 @@ a {
 
   &--portrait {
     float: right;
+    text-align: right;
     width: 38%;
   }
 
@@ -150,8 +149,23 @@ a {
     flex-wrap: wrap;
     justify-content: space-between;
 
-    .image {
+    .content-element {
       width: 31%;
+    }
+  }
+
+  &--double {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .content-element {
+      height: 100%;
+      width: 34%;
+
+      &:first-child {
+        margin-right: 2%;
+      }
     }
   }
 }
@@ -228,6 +242,7 @@ a {
 }
 
 .card {
+  display: block;
   color: $black;
   margin-bottom: 20px;
   border-radius: 3px;
