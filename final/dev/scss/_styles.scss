@@ -86,8 +86,8 @@ h1, h2, h3 {
   font-family: 'FiraSansCondensed', sans-serif;
 }
 
-h2 {
-  font-size: 2rem;
+.header {
+  margin-top: 2rem;
 }
 
 a {
@@ -119,11 +119,11 @@ a {
 
 .column {
   margin: 0 auto;
-  max-width: 680px;
+  max-width: 620px;
   overflow: hidden;
 
   &--wide {
-    max-width: 1120px;
+    max-width: 1000px;
   }
 }
 
@@ -172,7 +172,7 @@ a {
       }
 
       @media screen and (min-width: $bp-tablet) {
-        width: 26%;
+        width: 39%;
       }
     }
   }
