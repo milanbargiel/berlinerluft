@@ -64,6 +64,7 @@ Dieses Projekt visualisiert die gemessenen Luftdaten und die gesammelten Twitter
             map.on('load', function () {
                 // Start the animation.
                 rotateCamera(0);
+                document.querySelector('#map').style.opacity = 1;
 
                 // Add 3d buildings and remove label layers to enhance the map
                 var layers = map.getStyle().layers;
