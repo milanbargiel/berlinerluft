@@ -1,8 +1,103 @@
 {{! render content in _layout partial; pass title to _layout partial}}
 {{#> _layout title='Dicke Luft – Die autofreie Friedrichstraße' }}
-  <h1 class="header">Visualisierung</h1>
-  <p class="calendar-intro">Die Friedrichstraße in Berlin ist seit September 2020 für Autos gesperrt.<br>Diese Karte zeigt den Stickstoffdioxidgehalt der Friedrichstraße im Tagesdurchschnitt.<br>Klicke auf ein Datum, um Beiträge auf Twitter für das Projekt der <a href="https://twitter.com/search?q=autofreie%20friedrichstra%C3%9Fe" target="_blank" class="hashtag hashtag--link">#autofreien #friedrichstraße</a> anzuzeigen ↓</p>
-  <div id="calendar"></div>
-  <div id="tweets"></div>
-  <div class="loader">Loading...</div>
-{{/_layout}}
+<nav>
+    <input id="nav-toggle" type="checkbox"/>
+    <div class="project-titel">
+        <a href="index.html" style="text-decoration: underline">Dicke Luft</a>
+    </div>
+
+    <ul class="navbar-links">
+        <li><a href="read.html">About</a></li>
+        <li><a href="explore.html">Data</a></li>
+        <li><a href="other.html">Team</a></li>
+    </ul>
+
+    <label for="nav-toggle" class="icon-burger"> 
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </label>
+
+</nav>
+
+<header>        
+    <section>
+        <h1 class="lh1"> Dicke Luft </h1>
+        <h2 class="lh2">#friedrichstraße</h2>
+        <p class="lp"> Mitten in Berlin fahren seit September 2020 keine Autos mehr. Voraussichtlich bis Oktober 2021 sind 500 Meter der Friedrichstraße für Autos gesperrt. Die temporäre Sperrung ist ein Versuch die Umgebung für Flanierende attraktiver zu gestalten. Über farbige Markierungen und Bäumen bis hin zu neuen Aufenthaltsflächen wird der neu geschaffenen Raum bespielt und kritisch beobachtet.
+        "Dicke Luft" visualisiert die Prozesse rund um die Friedrichstraße. Durch Luftdaten und Twitterbeiträge zur #friedrichstraße werden die unsichtbaren Veränderungen im Zusammenhang mit der politischen Diskussion analysiert und umrissen.</p>
+        <div class="rowbutton">
+            <a href="read.html" class="button">Weiterlesen</a href="">
+                <a href="explore.html" class="button">Luftdaten</a href="">
+                </div>
+    </section>
+</header>
+
+        <div id="map">
+            <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
+            <script>
+
+            mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsaW5hMTIiLCJhIjoiY2s1enVubm92MDE3dTNtbzI5cHFnMTJ1dyJ9.OtIPe2I2Vd7-s8biai9YfA';
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/calina12/ckk949f411z4e17lize0ynrsp', //mapbox://styles/mapbox/light-v10', 
+                center: [13.385099, 52.513415],
+                zoom: 14.5,
+                pitch: 60
+            }); 
+
+            /* Disable Interactivity von der Map */
+            map.scrollZoom.disable();
+            map.dragPan.disable();
+
+            function rotateCamera(timestamp) {
+                // clamp the rotation between 0 -360 degrees
+                // Divide timestamp by 100 to slow rotation to ~10 degrees / sec
+                map.rotateTo((timestamp / 600) % 360, { duration: 0 });
+                // Request the next frame of the animation.
+                requestAnimationFrame(rotateCamera);
+            }  
+
+            map.on('load', function () {
+                // Start the animation.
+                rotateCamera(0);
+
+                // Add 3d buildings and remove label layers to enhance the map
+                var layers = map.getStyle().layers;
+                for (var i = 0; i < layers.length; i++) {
+                    if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+                        // remove text labels
+                        map.removeLayer(layers[i].id);
+                    }
+                }
+
+                map.addLayer({
+                    'id': '3d-buildings',
+                    'source': 'composite',
+                    'source-layer': 'building',
+                    'filter': ['==', 'extrude', 'true'],
+                    'type': 'fill-extrusion',
+                    'minzoom': 15,
+                });
+            });
+            </script>
+        </div>
+
+
+
+        <footer id="footer">
+            <div class="bar">
+                <span class="bar_content">"Wir standen immer vor dem Dilemma, dass von uns Konzepte verlangt worden sind,
+                    wenn wir fragten, was
+                    sich
+                    die Betroffenen wünschen. Und dann heißt es, wir hätten vollendete Tatsachen geschaffen", so @DasselVon
+                    zur
+                    #Friedrichstrasse.
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|  Tweets #Friedrichstraße  |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    @FaireWerte @DoCruz1 Aggressive Radfahrer in #Berlin-#Mitte auf der für Autos
+                    gesperrten
+                    #Friedrichstraße? 😱
+                Call me shocked - NOT 😄</span>
+            </div>
+        </footer>
+        {{/_layout}}
