@@ -185,8 +185,7 @@ nav :checked ~.icon-burger .line:nth-child(2) {
     width: 100%;
     display: flex;
     white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow: hidden;
     background-color: #efefef;
     padding-top: 7px;
     padding-bottom: 7px;
@@ -285,6 +284,11 @@ section {
       font-weight: 500; 
       transition: font-size 80ms ease-in;
       border: 2px solid black;
+
+      &--primary {
+        background: $black;
+        color: $white;
+      }
 }   
 
 .button:hover {
