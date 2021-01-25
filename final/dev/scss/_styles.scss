@@ -534,9 +534,37 @@ section {
 }
 
 .image-caption {
+  text-align: right;
   margin-top: .4rem;
   margin-left: auto;
   margin-right: 5px;
+}
+
+.go-to-vis-button {
+  font-size: $small-font-size;
+  margin-top: 4rem;
+  border-radius: 25px;
+  display: block;
+  background-color: #FFDB84;
+  width: 100%;
+  padding: 30px;
+  border: 1px solid $grey;
+
+  &__text {
+    width: 72%;
+  }
+
+  &__btn {
+    margin-top: 10px;
+    border-radius: 15px;
+    display: inline-block;
+    padding: 10px;
+    background-color: #FFA952;
+  }
+
+  &:hover {
+    border: 1px solid $black;
+  }
 }
 
 .footer {
