@@ -66,8 +66,10 @@ $font-family: 'FiraCode', monospace;
 $red: rgb(255, 35, 0);
 $blue: rgb(27, 149, 224);
 $grey: rgb(101, 119, 134);
+$middle-grey: rgb(148, 148, 148);
 $light-grey: rgb(204, 214, 221);
 $almost-white: rgb(245, 248, 250);
+$almost-black: rgb(17, 17, 17);
 $map-gray: $grey;
 $slightest-grey: #F8F8F8;
 $black: #000;
@@ -261,6 +263,18 @@ a {
   margin-right: 5px;
 }
 
+.footer {
+  margin-top: 5rem;
+  color: $middle-grey;
+  background-color: $almost-black;
+  padding: 60px 15px 30px 15px;
+
+  @media screen and (min-width: $bp-tablet) {
+    padding: 60px;
+  }
+}
+
+// Visualization
 .month {
   margin-right: 2rem;
 }
