@@ -149,13 +149,13 @@ nav .navbar-links li {
     list-style: none;  
 }
 
+nav a {
+    opacity: 80%; 
+}
+
 nav .navbar-links a {
     display: block;
     padding: 1em; 
-}
-
-nav a {
-    opacity: 80%; 
 }
 
 nav a:hover {
