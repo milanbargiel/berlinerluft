@@ -75,6 +75,8 @@ $white: #fff;
 $yellow: #ff0;
 $orange: #f25c05;
 
+$duration: 240s;
+
 body {
   background-color: $slightest-grey;
   font-size: $base-font-size;
@@ -100,7 +102,82 @@ a {
   overflow: hidden;
 }
 
-#map {
+// Footer mit Tweets
+#footer {
+  width: 100%;
+  height: 2.5rem; 
+}
+
+@-webkit-keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.ticker-wrap {
+  border-top: 2px solid; 
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  white-space: nowrap;
+  overflow: hidden;
+  background-color: #efefef;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  z-index: 8;
+  padding-left: 100%;
+  box-sizing: content-box;
+
+  .ticker {
+    display: inline-block;
+    white-space: nowrap;
+    padding-right: 100%;
+    box-sizing: content-box;
+
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: ticker;
+    animation-duration: $duration;
+
+    &__item {
+      display: inline-block;
+
+      &:after {
+        content: '–';
+        margin-right: 1rem;
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+
+#map { 
+  position: fixed;
+  top: 0;
+  bottom: 0; 
+  width: 100%; 
+  z-index: 1;
   background-color: $map-gray;
   opacity: 0;
   transition: opacity .25s ease-in-out;
