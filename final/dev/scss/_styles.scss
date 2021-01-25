@@ -223,10 +223,14 @@ a {
   margin-bottom: 2rem;
 
   &--portrait {
-    float: right;
-    text-align: right;
-    width: 38%;
-    margin-left: 2rem;
+    width: 100%;
+
+    @media screen and (min-width: $bp-tablet) {
+      float: right;
+      text-align: right;
+      width: 38%;
+      margin-left: 2rem;
+    }
   }
 
   &--triple {
