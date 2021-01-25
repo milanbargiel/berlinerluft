@@ -277,9 +277,10 @@ a {
   margin-top: 5rem;
   color: $middle-grey;
   background-color: $almost-black;
-  padding: 60px 15px 30px 15px;
+  padding: 60px 20px 30px 20px;
 
   @media screen and (min-width: $bp-tablet) {
+    text-align: center;
     padding: 60px;
   }
 
