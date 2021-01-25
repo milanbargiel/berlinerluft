@@ -515,7 +515,8 @@ section {
   &--double {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 
     .content-element {
       height: 100%;
@@ -526,7 +527,7 @@ section {
       }
 
       @media screen and (min-width: $bp-tablet) {
-        width: 39%;
+        width: 49%;
       }
     }
   }
