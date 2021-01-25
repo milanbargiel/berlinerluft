@@ -146,12 +146,18 @@ section {
 }
 
 .lh1 {
-    font-size: 7.5rem;
+    font-size: 5rem;
+    margin-top: 4rem;
     font-weight: bolder; 
     position: relative;
     margin-bottom: 2%;
     z-index: 3;
     line-height: 1;
+
+    @media screen and (min-width: $bp-tablet) {
+        font-size: 7rem;
+        margin-top: 5rem;
+    }
 }
 
 .lh2 {
@@ -234,23 +240,9 @@ section {
       border-radius: 2.5rem;
       padding: 0.5rem 1.7rem;
       margin: 0 0.5rem;
-      background: #b5b5b5;
       margin-bottom: 1em;  
     }
 }
-
-@media (max-width: 500px){
-    .lh1 {
-        font-size: 5rem;
-        line-height: 5rem; 
-        margin-top: 2rem;
-    }
-
-    .rowbutton {
-        padding-bottom: 300px; 
-    }
-}
-
 
 /* trüben Map */ 
 
