@@ -501,6 +501,7 @@ section {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: flex-start; // fix for safaris image stretching
 
     .content-element {
       width: 100%;
