@@ -48,16 +48,10 @@ nav a {
 
 nav a:hover {
     color: #f25c05;
-    opacity: 60%;
     font-size: 1.54rem;
     transition: 0.1s ease-in-out; 
-    text-decoration: none; 
-    }
+}
 
-nav a:hover {
-    color: #f25c05  ;    /* lila #635fe3   knallorange #f25c05  orangewenigerintense #E56717*/
-    opacity: 60%; 
-    }
 /* Menu wenn kleiner Screen */ 
 
 #nav-toggle {

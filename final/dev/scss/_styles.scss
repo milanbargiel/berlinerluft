@@ -92,6 +92,11 @@ h1, h2, h3 {
 
 .header {
   margin-top: 2rem;
+
+  &--big {
+    line-height: 1;
+    font-size: 50px;
+  }
 }
 
 a {
@@ -271,6 +276,15 @@ a {
 
   @media screen and (min-width: $bp-tablet) {
     padding: 60px;
+  }
+
+  &__link {
+    color: $middle-grey;
+    text-decoration: underline;
+
+    &:hover {
+      color: $almost-white;
+    }
   }
 }
 
