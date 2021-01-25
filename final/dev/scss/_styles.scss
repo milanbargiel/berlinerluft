@@ -197,6 +197,7 @@ a {
 
   @media screen and (min-width: $bp-tablet) {
     padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 
@@ -311,7 +312,7 @@ a {
     }
 
     * {
-      display: none;
+      display: none !important;
     }
   }
 }
