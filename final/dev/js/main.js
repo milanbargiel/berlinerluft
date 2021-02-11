@@ -259,7 +259,7 @@ function drawCalendar(airData, tweets) {
     .attr('y', 36);
 
   const ticks = d3.axisRight(d3.scaleLinear()
-    .domain([0, 40])
+    .domain([40, 0])
     .range([0, 118]))
     .ticks(5);
 
